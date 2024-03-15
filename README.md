@@ -4,10 +4,24 @@
 
 Turso Dabatabase Background Sync in the Background
 
+<h2>Installation</h2>
+
+**Globally Install**
+
+```bash
+composer global require darkterminal/turso-syncd
+```
+
+or you can install locally within your porject:
+
+```bash
+composer require darkterminal/turso-syncd
+```
+
 <h2>Usage</h2>
 
 ```bash
-$ turso-syncd --database=<database_name> --organization=<organization_name> --token=<token> [--file_recorder=<file>] [--action_log_file=<file>] [--errors_log_file=<file>]
+turso-syncd --database=<database_name> --organization=<organization_name> --token=<token> [--file_recorder=<file>] [--action_log_file=<file>] [--errors_log_file=<file>]
 ```
 
 <h2>Options</h2>
