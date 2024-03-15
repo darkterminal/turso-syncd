@@ -1,0 +1,4 @@
+*.db
+*.sql
+example.php
+vendor/

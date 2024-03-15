@@ -1,0 +1,22 @@
+{
+    "name": "darkterminal/turso-syncd",
+    "authors": [
+        {
+            "name": "Imam Ali Mustofa",
+            "email": "darkterminal@duck.com"
+        }
+    ],
+    "bin": [
+        "turso-syncd"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Darkterminal\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.4",
+        "darkterminal/turso-http": "^1.2",
+        "react/event-loop": "^1.4.0"
+    }
+}

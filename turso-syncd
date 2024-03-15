@@ -1,0 +1,50 @@
+#!/usr/bin/env php
+<?php
+
+ini_set('display_errors', false);
+
+if (file_exists(__DIR__ . '/../../autoload.php')) {
+    require __DIR__ . '/../../autoload.php';
+} else {
+    require __DIR__ . '/vendor/autoload.php';
+}
+
+$options = getopt("d:o:t:", ["database:", "organization:", "token:", "file_recorder:", "action_log_file:", "errors_log_file:", "help"]);
+
+function display_help()
+{
+    echo "Usage: " . basename(__FILE__) . " --database=<database_name> --organization=<organization_name> --token=<token> [--file_recorder=<file>] [--action_log_file=<file>] [--errors_log_file=<file>]" . PHP_EOL;
+    echo "Usage: " . basename(__FILE__) . " -d <database_name> -o <organization_name> -t <token> [-f <file>] [-a <file>] [-e <file>]" . PHP_EOL;
+    echo "Starts TursoSyncd with provided parameters." . PHP_EOL;
+    echo PHP_EOL;
+    echo "Options:" . PHP_EOL;
+    echo "  --database=<database_name> or -d          The name of the database." . PHP_EOL;
+    echo "  --organization=<organization_name> or -o  The name of the organization." . PHP_EOL;
+    echo "  --token=<token> or -t                     The token for authentication." . PHP_EOL;
+    echo "  --file_recorder=<file>                    Specify file recorder." . PHP_EOL;
+    echo "  --action_log_file=<file>                  Specify action log file." . PHP_EOL;
+    echo "  --errors_log_file=<file>                  Specify errors log file." . PHP_EOL;
+    echo "  --help                                    Display this help message." . PHP_EOL;
+    exit(1);
+}
+
+if (isset($options['help'])) {
+    display_help();
+}
+
+if ((!isset($options['database']) && !isset($options['d'])) || (!isset($options['organization']) && !isset($options['o'])) || (!isset($options['token']) && !isset($options['t']))) {
+    echo "Error: Required arguments missing. Use --help for usage instructions." . PHP_EOL;
+    exit(1);
+}
+
+$databaseName       = $options['database'] ?? $options['d'];
+$organizationName   = $options['organization'] ?? $options['o'];
+$token              = $options['token'] ?? $options['t'];
+$config             = [
+    'file_recorder'     => $options['file_recorder'] ?? null,
+    'action_log_file'   => $options['action_log_file'] ?? null,
+    'errors_log_file'   => $options['errors_log_file'] ?? null,
+];
+
+$tursoSyncd = new Darkterminal\TursoSyncd($databaseName, $organizationName, $token, $config);
+$tursoSyncd->start();
