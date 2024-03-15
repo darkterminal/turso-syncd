@@ -1,7 +1,7 @@
-<img src="https://i.imgur.com/1ArWHOg.gif" width="100%" />
-<br /><br />
+<img src="Turso-Syncd.gif" width="100%" />
+
 <h1 align="center">~ TursoSyncd ~</h1>
-<br /><br />
+
 Turso Dabatabase Background Sync in the Background
 
 <h2>Usage</h2>
