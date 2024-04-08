@@ -33,3 +33,25 @@ turso-syncd --database=<database_name> --organization=<organization_name> --toke
 - `--action_log_file=<file>`: Specify action log file.
 - `--errors_log_file=<file>`: Specify errors log file.
 - `--help`: Display this help message.
+
+<h2>Extend in Your Own Daemon</h2>
+
+```php
+<?php
+
+use Darkterminal\TursoSyncd;
+
+require_once "vendor/autoload.php";
+
+$databaseName       = "your-database-name";
+$organizationName   = "your-organization-name";
+$token              = "your-turso-token";
+$config             = [
+    'file_recorder'     => "/path/to/your/recorder-file/recorded_queries.json",
+    'action_log_file'   => "/path/to/your/action-log-file/actions.log",
+    'errors_log_file'   => "/path/to/your/error-log-file/errors.log",
+];
+
+$tursoSyncd = new TursoSyncd($databaseName, $organizationName, $token, $config);
+$tursoSyncd->start();
+```
